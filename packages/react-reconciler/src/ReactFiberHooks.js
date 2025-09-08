@@ -1724,6 +1724,19 @@ function mountSyncExternalStore<T>(
   hook.queue = inst;
 
   // Schedule an effect to subscribe to the store.
+  // todo: check hook log
+  // Changed hooks offset issue history
+  // - id in HooksNode in 28.02.2019 - bb2939ccc23c9895d798f889d9c32848be43225e
+  //
+  // - useTransition added in 18.10.2019 - 685ed561f22ea062281a4c570c7067e6020457c4
+  //
+  // - add changed hook indices in 17.03.2021 - 119736b1c2ea0d404ad466e39138462453392008
+  //
+  // - useSyncExternalStore added in 07.09.2021 - 77912d9a05d7a90287fabdec76486f25869b2981
+  //
+  // - useFormState added in 05.02.2024 - 56cd10beb40586d09e91157e8f6ac531478a62be
+  //
+  // - useActionState added in 22.03.2024 - 5c65b27587c0507d66a84e055de948fc62d471d4
   mountEffect(subscribeToStore.bind(null, fiber, inst, subscribe), [subscribe]);
 
   // Schedule an effect to update the mutable instance fields. We will update
